@@ -15,3 +15,9 @@ App para calcular la raiz con el metodo de Newton Raphson
 - Agregar una pagina para conocer los cambios que se entan desarrollando
 
 - Mejor el NavBar(Menu de Navegacion) para mejorar su apariencia en moviles
+
+## Info del proyecto
+
+Como parte de la informacion esta proyecto se Inicio aproximadamente a principios de Marzo, pero se
+empezo a usar git en el apanas en 24 de Abril del 2024 aproximadamente, y se subio apenas a un repositorio
+el 26 de Abril del 2024
