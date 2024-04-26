@@ -23,12 +23,9 @@ function calcularDerivada(f) {
 
 function verificarExpresion(expresion) {
   try {
-    console.log(expresion);
     parse(expresion).evaluate({ x: "1" }); // Intenta compilar la expresión
-    console.log("Salio bien");
     return true; // Si no hay errores, la expresión está bien escrita
   } catch (error) {
-    console.log(error);
     return false; // Si hay errores, la expresión está mal escrita
   }
 }

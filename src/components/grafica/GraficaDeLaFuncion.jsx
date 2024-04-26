@@ -12,8 +12,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-import { resolverEcuacion } from "../../libs/math/basicos";
-import { abs } from "mathjs";
+import useGrafica from "../../hooks/useGrafica";
 
 ChartJS.register(
   CategoryScale,
@@ -27,61 +26,18 @@ ChartJS.register(
 );
 
 const GraficaDeLaFuncion = ({ ecuacion }) => {
-  const [valorLineaX, setValorLineaX] = useState([]);
-  const [valorLineaY, setValorLineaY] = useState([]);
-
-  const [form, setForm] = useState({
-    rangoXL: "",
-    rangoXR: "",
-  });
-
-  const [rangoXL, setRangoXL] = useState(-2);
-  const [rangoXR, setRangoXR] = useState(2);
-
-  const [valorMinY, setvalorMinY] = useState(5);
-
-  //console.log(ecuacion);
-
-  useEffect(() => {
-    calcularGrafica();
-  }, [ecuacion, rangoXL, rangoXR]);
-
-  function calcularGrafica() {
-    let valoresY = [];
-    let valoresX = [];
-    let contador = 0;
-    let valorMaximoX = 0;
-
-    for (let i = rangoXL; i <= rangoXR; i += 0.5) {
-      let valor = resolverEcuacion(ecuacion, i);
-      valoresY[contador] = valor;
-      valoresX[contador] = i;
-
-      if (abs(valor) > valorMaximoX) {
-        valorMaximoX = abs(valor);
-      }
-      console.log("x:" + valoresX[contador] + "  y:" + valoresY[contador]);
-      contador++;
-    }
-    //console.log(valoresY);
-    //console.log(valoresX);
-
-    // Agrgadolos al estado
-    setValorLineaX(valoresX);
-    setValorLineaY(valoresY);
-    //console.log(valorMaximoX);
-    setvalorMinY(valorMaximoX);
-  }
-
-  //console.log(ecuacion);
+  const { handleChange, dataForm, grafica, valorMinY, actualizarGrafica } =
+    useGrafica({
+      ecuacion,
+    });
 
   let otraData = {
-    labels: valorLineaX,
+    labels: grafica.valoresX,
     datasets: [
       // Cada una de las líneas del gráfico
       {
         label: ecuacion,
-        data: valorLineaY,
+        data: grafica.valoresY,
         tension: 0.5,
         fill: true,
         borderColor: "rgb(50, 182, 86)",
@@ -109,7 +65,7 @@ const GraficaDeLaFuncion = ({ ecuacion }) => {
     <div>
       <h2 className="font-medium text-xl">Gráfica de la función: {ecuacion}</h2>
 
-      {valorLineaX && valorLineaY && <Line data={otraData} options={options} />}
+      {grafica.valoresX && <Line data={otraData} options={options} />}
 
       <section className="flex flex-col gap-3 items-center w-full">
         <form
@@ -126,10 +82,8 @@ const GraficaDeLaFuncion = ({ ecuacion }) => {
               className="outline-emerald-300 border-2 p-1 rounded-lg"
               type="number"
               name="rangoXL"
-              value={form.rangoXL}
-              onChange={(e) =>
-                setForm({ ...form, [e.target.name]: e.target.value })
-              }
+              value={dataForm.rangoXL}
+              onChange={(e) => handleChange(e)}
               placeholder="Por defecto -2"
             />
           </section>
@@ -139,9 +93,8 @@ const GraficaDeLaFuncion = ({ ecuacion }) => {
             <input
               className="outline-emerald-300 border-2 p-1 rounded-lg"
               type="number"
-              onChange={(e) =>
-                setForm({ ...form, [e.target.name]: e.target.value })
-              }
+              value={dataForm.rangoXR}
+              onChange={(e) => handleChange(e)}
               name="rangoXR"
               placeholder="Por defecto 2"
             />
@@ -152,14 +105,8 @@ const GraficaDeLaFuncion = ({ ecuacion }) => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              if (
-                typeof form.rangoXL == "string" &&
-                typeof form.rangoXR == "string"
-              ) {
-                setRangoXL(parseFloat(form.rangoXL));
-                setRangoXR(parseFloat(form.rangoXR));
-                //console.log("Echo");
-              }
+              console.log("Actualizando");
+              actualizarGrafica();
             }}
           >
             Actualizar Grafica

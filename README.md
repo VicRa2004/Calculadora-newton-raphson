@@ -1,8 +1,17 @@
-# React + Vite
+# Aun falta el nombre
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App para calcular la raiz con el metodo de Newton Raphson
 
-Currently, two official plugins are available:
+## Proximas cosas a agregar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Un limite de Iteraciones. Por defecto que sea 20
+
+- Una pagina para ver los cambios que surgen a lo largo del tiempo
+
+- Agregar un limite de decimales de acuerdo a lo que desea el usuario
+
+- Mejorar el apartado estetico de la pagina
+
+- Agregar una pagina para conocer los cambios que se entan desarrollando
+
+- Mejor el NavBar(Menu de Navegacion) para mejorar su apariencia en moviles

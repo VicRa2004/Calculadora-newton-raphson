@@ -6,10 +6,11 @@ import NewtonRaphson from "./pages/NewtonRaphson";
 import Ayuda from "./pages/Ayuda";
 import Integrantes from "./pages/Integrantes";
 import { HashRouter } from "react-router-dom";
+import NewtonState from "./context/Newton/NewtonState";
 
 const App = () => {
   return (
-    <>
+    <NewtonState>
       <HashRouter>
         <Navbar />
         <main className="px-12 py-4 grid gap-4 text-lg border-5">
@@ -21,7 +22,7 @@ const App = () => {
           </Routes>
         </main>
       </HashRouter>
-    </>
+    </NewtonState>
   );
 };
 

@@ -1,0 +1,9 @@
+export const SET_FORM_METODO = "SET_FORM_METODO";
+
+export const SET_FORM_GRAFICA = "SET_FORM_GRAFICA";
+
+export const SET_ERRORS = "SET_ERRORS";
+
+export const SET_ITERACIONES = "SET_ITERACIONES";
+
+export const SET_GRAFICA = "SET_GRAFICA";
